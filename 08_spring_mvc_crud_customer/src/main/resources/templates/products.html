@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+
+    <title>Spring Boot MVC - List products page</title>
+
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+
+    <!--
+        The cdn link enables us to view html document with CSS styles without a running server.
+        Thymeleaf generates the appropriate resource URLs when running via the "webjars-locator" -->
+
+    <link href="http://cdn.jsdelivr.net/webjars/bootstrap/3.4.1/css/bootstrap.min.css" rel="stylesheet" media="screen"
+          th:href="@{/webjars/bootstrap/css/bootstrap.min.css}"/>
+
+    <script src="http://cdn.jsdelivr.net/webjars/jquery/3.4.1/jquery.min.js"
+            th:src="@{/webjars/jquery/jquery.min.js}"></script>
+
+    <link href="../../static/css/spring-core.css"
+          th:href="@{/css/spring-core.css}" rel="stylesheet" media="screen"/>
+</head>
+<body>
+<div class="container">
+    <div th:if="${not #lists.isEmpty(products)}">
+        <h2>Product List</h2>
+        <table class="table table-striped">
+            <tr>
+                <th>Id</th>
+                <th>Description</th>
+                <th>Price</th>
+                <th>Image URL</th>
+                <th>List</th>
+                <th>Edit</th>
+                <th>Delete</th>
+            </tr>
+            <tr th:each="product : ${products}">
+                <td th:text="${product.id}"></td>
+                <td th:text="${product.description}"></td>
+                <td th:text="${product.price}"></td>
+                <td th:text="${product.imageUrl}"></td>
+                <td><a th:href="${'/product/' + product.id}">View</a></td>
+                <td><a th:href="${'/product/edit/' + product.id}">Edit</a></td>
+                <td><a th:href="${'/product/delete/' + product.id}">Delete</a></td>
+            </tr>
+        </table>
+    </div>
+
+    <div class="row">
+        <div class="col-sm-3">
+            <a href="/product/new">New Product</a>
+        </div>
+    </div>
+    <div>
+        <h3>Locale</h3>
+        <p>
+            Locale from Spring: <span th:text="${locale}"></span>
+        </p>
+        <p>
+            Locale from Thymeleaf: <span th:text="${#locale}"></span>
+        </p>
+        <p>
+            Switch: <a href="/products?lang=de">set to de</a>
+            <a href="/products?lang=en">set to en</a>
+        </p>
+        Sample: <span th:text="#{sampleProperty}"/>
+    </div>
+
+</div>
+
+</body>
+</html>

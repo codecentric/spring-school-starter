@@ -5,4 +5,11 @@ hello:
     port: 8080
     path: hello
 
+user:
+  client:
+    scheme: http
+    host: localhost
+    port: 8080
+    path: users
+
 server.port: 8090

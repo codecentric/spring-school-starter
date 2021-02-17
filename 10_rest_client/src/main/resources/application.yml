@@ -1,0 +1,8 @@
+hello:
+  client:
+    scheme: http
+    host: localhost
+    port: 8080
+    path: hello
+
+server.port: 8090

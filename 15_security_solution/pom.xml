@@ -10,7 +10,7 @@
 	</parent>
 
 	<groupId>monster.inc</groupId>
-	<artifactId>L_01_security</artifactId>
+	<artifactId>L_01_security_solution</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>jar</packaging>
 	<name>${project.artifactId}</name>

@@ -1,14 +1,11 @@
 package inc.monster.app.user.service;
 
 import inc.monster.app.user.domain.User;
-import java.util.Comparator;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Optional;
-import java.util.stream.Collectors;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+
+import java.util.*;
+import java.util.stream.Collectors;
 
 @Component
 public class UserService {
@@ -33,16 +30,16 @@ public class UserService {
         return Optional.ofNullable(users.get(id));
     }
 
-    public void saveUser(final User user) {
+    public void saveOrUpdateUser(final User user) {
         loadUsers();
 
-        // save user ???
+        users.put(user.getId(), user);
     }
 
     public void deleteUser(final Long id) {
         loadUsers();
 
-        // delete user ???
+        users.remove(id);
     }
 
     void loadUsers() {

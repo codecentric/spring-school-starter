@@ -2,14 +2,15 @@ package inc.monster.app.user.service;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import inc.monster.app.user.domain.User;
-import java.io.InputStream;
-import java.util.Arrays;
-import java.util.List;
 import lombok.SneakyThrows;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.core.io.Resource;
 import org.springframework.stereotype.Component;
+
+import java.io.InputStream;
+import java.util.Arrays;
+import java.util.List;
 
 @Component
 public class UsersJsonLoader {

@@ -3,6 +3,7 @@ package inc.monster.app.user.controller;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import inc.monster.app.user.domain.User;
 import inc.monster.app.user.service.UserService;
+import lombok.SneakyThrows;
 import org.hamcrest.MatcherAssert;
 import org.hamcrest.Matchers;
 import org.junit.Before;
@@ -28,17 +29,18 @@ import java.util.Optional;
 public class UserControllerTest {
 
     private User userOne = new User();
+
     private User userTwo = new User();
+
     private User userThree = new User();
 
     @Autowired
     private MockMvc mvc;
 
-    @Autowired
-    private ObjectMapper mapper;
-
     @MockBean
-    private UserService usersService;
+    private UserService userService;
+
+    private ObjectMapper mapper = new ObjectMapper();
 
     @Before
     public void setup() {
@@ -49,7 +51,7 @@ public class UserControllerTest {
 
     @Test
     public void getUsers() throws Exception {
-        Mockito.when(usersService.getAllUsers()).thenReturn(Arrays.asList(userOne, userTwo));
+        Mockito.when(userService.getAllUsers()).thenReturn(Arrays.asList(userOne, userTwo));
 
         final String json = this.mvc
                 .perform(MockMvcRequestBuilders.get("/users").accept(MediaType.APPLICATION_JSON))
@@ -62,12 +64,12 @@ public class UserControllerTest {
 
         MatcherAssert.assertThat(users, Matchers.contains(userOne, userTwo));
 
-        Mockito.verify(usersService).getAllUsers();
+        Mockito.verify(userService).getAllUsers();
     }
 
     @Test
     public void getUser() throws Exception {
-        Mockito.when(usersService.getUser(111L)).thenReturn(Optional.of(userOne));
+        Mockito.when(userService.getUser(111L)).thenReturn(Optional.of(userOne));
 
         final String json = this.mvc
                 .perform(MockMvcRequestBuilders.get("/users/111").accept(MediaType.APPLICATION_JSON))
@@ -80,6 +82,42 @@ public class UserControllerTest {
 
         MatcherAssert.assertThat(user, Matchers.is(userOne));
 
-        Mockito.verify(usersService).getUser(111L);
+        Mockito.verify(userService).getUser(111L);
+    }
+
+    @SneakyThrows
+    @Test
+    public void postUser() {
+        this.mvc.perform(
+                MockMvcRequestBuilders.post("/users")
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(mapper.writeValueAsString(userOne)))
+                .andDo(MockMvcResultHandlers.print())
+                .andExpect(MockMvcResultMatchers.status().isCreated());
+
+        Mockito.verify(userService).saveOrUpdateUser(userOne);
+    }
+
+    @SneakyThrows
+    @Test
+    public void deleteUser() {
+        this.mvc.perform(MockMvcRequestBuilders.delete("/users/333"))
+                .andDo(MockMvcResultHandlers.print())
+                .andExpect(MockMvcResultMatchers.status().isOk());
+
+        Mockito.verify(userService).deleteUser(333L);
+    }
+
+    @SneakyThrows
+    @Test
+    public void putUser() {
+        this.mvc.perform(
+                MockMvcRequestBuilders.put("/users/333")
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(mapper.writeValueAsString(userOne)))
+                .andDo(MockMvcResultHandlers.print())
+                .andExpect(MockMvcResultMatchers.status().isNotImplemented());
+
+        Mockito.verifyNoInteractions(userService);
     }
 }

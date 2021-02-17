@@ -1,0 +1,40 @@
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+  # change management port
+  #port: 8081
+
+  # switch security on or off for all management endpoints
+  security:
+    enabled: false
+
+  # change overall management path prefix
+  #context-path: /management
+
+# enable hypermedia for endpoints
+#endpoints:
+  #hypermedia:
+    #enabled: true
+
+  #info:
+    # customized path for the 'info' endpoint
+    #path: /system/info
+
+# provide custom application information here
+# everything below 'info' is populated
+#info:
+  #app:
+    #encoding: UTF-8
+    #source: 1.8
+    #target: 1.8
+
+#info:
+#  app:
+#    encoding: @project.build.sourceEncoding@
+#    source: @java.version@
+#    target: @java.version@
+
+
+

@@ -1,0 +1,20 @@
+body {
+    background-image: url('/images/HundH.png');
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: center;
+}
+
+.login {
+    border-bottom: 1px solid;
+}
+
+.logout {
+    border-bottom: 1px solid;
+}
+
+p.error {
+    font-weight: bold;
+    color: red;
+}
+

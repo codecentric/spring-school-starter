@@ -1,8 +1,8 @@
 package inc.monster.controllers;
 
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.header;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.view;
 
 import org.junit.Test;
 import org.springframework.test.web.servlet.MockMvc;
@@ -17,8 +17,8 @@ public class IndexControllerTest {
     @Test
     public void testIndex() throws Exception {
         mockMvc.perform(get("/"))
-                .andExpect(status().isOk())
-                .andExpect(view().name("index"));
+                .andExpect(status().isFound())
+                .andExpect(header().string("Location", "/products"));
     }
 
 }

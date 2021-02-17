@@ -1,6 +1,5 @@
-package inc.monster.app.hello.resource;
+package inc.monster.app.hello.controller;
 
-import inc.monster.app.hello.controller.HelloController;
 import java.util.Collections;
 import java.util.Map;
 import org.hamcrest.Matchers;
@@ -19,12 +18,15 @@ import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 @WebMvcTest(HelloController.class)
 public class HelloControllerTest {
 
+    private static final Map<String, String> XML_NS =
+            Collections.singletonMap("ns", "http://monster.inc/hello");
+
     @Autowired
     private MockMvc mvc;
 
     @Test
     public void getHello_Accept_JSON() throws Exception {
-        mvc.perform(MockMvcRequestBuilders.get("/hello").accept(MediaType.APPLICATION_JSON))
+        this.mvc.perform(MockMvcRequestBuilders.get("/hello").accept(MediaType.APPLICATION_JSON))
                 .andDo(MockMvcResultHandlers.print())
                 .andExpect(MockMvcResultMatchers.status().isOk())
                 .andExpect(MockMvcResultMatchers.content().contentType(MediaType.APPLICATION_JSON))
@@ -33,15 +35,12 @@ public class HelloControllerTest {
 
     @Test
     public void getHello_Accept_XML() throws Exception {
-        Map<String, String> NS =
-                Collections.singletonMap("ns", "http://monster.inc/hello");
-
-        mvc.perform(MockMvcRequestBuilders.get("/hello").accept(MediaType.APPLICATION_XML))
+        this.mvc.perform(MockMvcRequestBuilders.get("/hello").accept(MediaType.APPLICATION_XML))
                 .andDo(MockMvcResultHandlers.print())
                 .andExpect(MockMvcResultMatchers.status().isOk())
                 .andExpect(MockMvcResultMatchers.content().contentType(MediaType.APPLICATION_XML))
                 .andExpect(MockMvcResultMatchers.xpath(
-                        "/ns:hello/message", NS)
+                        "/ns:hello/message", XML_NS)
                         .string("Hello World!"));
     }
 }

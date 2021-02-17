@@ -3,7 +3,6 @@ package inc.monster.app;
 import inc.monster.app.domain.Axle;
 import inc.monster.app.domain.Car;
 import inc.monster.app.domain.Wheel;
-import inc.monster.app.service.CarRepository;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ApplicationContext;
@@ -12,13 +11,34 @@ import org.springframework.context.ApplicationContext;
 public class App {
     public static void main(String[] args) {
         ApplicationContext context = SpringApplication.run(App.class, args);
-        Car car = makeDefaultCar();
+//        Car car = makeDefaultCar();
+//
+//        CarRepository cars = context.getBean(CarRepository.class);
+//
+//        System.out.println(cars.count());
+//        car = cars.save(car);
+//        System.out.println(cars.count());
+//
+//        System.out.println(car);
+//        System.out.println(cars.findByBrand("Volvo"));
+//
+//        cars.delete(car);
+//        System.out.println(cars.count());
+//
+//        for (int i = 0; i < 4; i++ ) {
+//        	cars.save(makeCar("Cool Car", "BMW", "Pirelli"));
+//        	cars.save(makeCar("Cooler Car", "Fiat", "Michelin"));
+//        	cars.save(makeCar("Coolest Car", "Renault", "Daikin"));
+//        }
+//        WheelRepository wheels = context.getBean(WheelRepository.class);
+//        Page<Wheel> page;
+//        for (page = wheels.findAll(PageRequest.of(0,  2, Sort.by("brand"))); !page.isLast(); page = wheels.findAll(page.nextPageable())) {
+//        	System.out.println(page.getContent());
+//        }
+//        System.out.println(page.getContent());
+//
+//        System.out.println(cars.findByWheelBrand("Pirelli"));
 
-        CarRepository cars = context.getBean(CarRepository.class);
-
-        System.out.println(cars.count());
-        car = cars.save(car);
-        System.out.println(cars.count());
     }
 
     private static Car makeDefaultCar() {

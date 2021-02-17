@@ -5,7 +5,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>monster.inc</groupId>
-    <artifactId>k-02-jpa</artifactId>
+    <artifactId>k-02-jpa-solution</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <packaging>jar</packaging>
     <name>${project.artifactId}</name>

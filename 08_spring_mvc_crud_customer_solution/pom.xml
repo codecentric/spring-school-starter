@@ -4,7 +4,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>monster.inc</groupId>
-    <artifactId>f-07-spring-mvc-crud-customer</artifactId>
+    <artifactId>f-08-spring-mvc-crud-customer-solution</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <packaging>jar</packaging>
     <name>${project.artifactId}</name>
@@ -44,6 +44,7 @@
         </dependency>
 
         <!-- webjars -->
+
         <dependency>
             <groupId>org.webjars</groupId>
             <artifactId>webjars-locator-core</artifactId>

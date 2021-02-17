@@ -1,24 +1,6 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head>
-
-    <title>Spring Boot MVC - List products page</title>
-
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-
-    <!--
-        The cdn link enables us to view html document with CSS styles without a running server.
-        Thymeleaf generates the appropriate resource URLs when running via the "webjars-locator" -->
-
-    <link href="http://cdn.jsdelivr.net/webjars/bootstrap/3.4.1/css/bootstrap.min.css" rel="stylesheet" media="screen"
-          th:href="@{/webjars/bootstrap/css/bootstrap.min.css}"/>
-
-    <script src="http://cdn.jsdelivr.net/webjars/jquery/3.4.1/jquery.min.js"
-            th:src="@{/webjars/jquery/jquery.min.js}"></script>
-
-    <link href="../../static/css/spring-core.css"
-          th:href="@{/css/spring-core.css}" rel="stylesheet" media="screen"/>
-</head>
+<head th:include="fragments/head :: header (pagetitle='Spring MVC - List products page')"></head>
 <body>
 <div class="container">
     <div th:if="${not #lists.isEmpty(products)}">
@@ -38,13 +20,12 @@
                 <td th:text="${product.description}"></td>
                 <td th:text="${product.price}"></td>
                 <td th:text="${product.imageUrl}"></td>
-                <td><a th:href="${'/product/' + product.id}">View</a></td>
-                <td><a th:href="${'/product/edit/' + product.id}">Edit</a></td>
-                <td><a th:href="${'/product/delete/' + product.id}">Delete</a></td>
+                <td><a th:href="${'/product/show/' + product.id}">View</a> </td>
+                <td><a th:href="${'/product/edit/' + product.id}">Edit</a> </td>
+                <td><a th:href="${'/product/delete/' + product.id}">Delete</a> </td>
             </tr>
         </table>
     </div>
-
     <div class="row">
         <div class="col-sm-3">
             <a href="/product/new">New Product</a>

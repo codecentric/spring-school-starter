@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head lang="en">
+    <title>Secured Page</title>
+    <meta charset="UTF-8"/>
+    <link rel="stylesheet" href="/main.css" th:href="@{/main.css}" />
+</head>
+<body>
+<div th:substituteby="index::logout"></div>
+<h1>This is a secured page for ADMINs!</h1>
+
+<p><a href="/car/index" th:href="@{/car/index}">Back</a></p>
+</body>
+</html>

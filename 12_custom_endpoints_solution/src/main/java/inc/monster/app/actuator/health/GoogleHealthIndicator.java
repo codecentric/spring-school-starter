@@ -28,7 +28,7 @@ public class GoogleHealthIndicator implements HealthIndicator {
 
             connection.connect();
 
-            log.debug("Service " + url + " available, yeah!");
+            log.info("Service " + url + " available, yeah!");
 
         } catch (final MalformedURLException e) {
             log.error("Bad URL: " + url, e);

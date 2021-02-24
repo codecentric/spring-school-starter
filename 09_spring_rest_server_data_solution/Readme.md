@@ -1,41 +1,23 @@
-# Extend REST Server
+# Extend our REST Server with database functionality
 
 Be aware that lombok is used in the project. Install the IntelliJ
 plugin if not yet done so.
 
-Take a look at the hello package to get "inspiration".
-
 ## Task
 
-Implement a REST resource 'users'. Extend the existing skeleton
-'UserController' class and implementing a HTTP GET endpoint for
-fetching all users at once. Using HTTP GET for url
-http://localhost:8080/users should get all users.
+Extend the previous application by now using a database to query the users.
+To achieve this we will replace the UsersJsonLoader with a real database.
 
-Use the JSON file 'users.json' as data source of your REST
-service. Do not return the plain file content. Load the JSON,
-map every user to a domain object 'User', and store all the users
-in a collection.
-
-Verify your controller with command line tools like wget/curl,
-with the browser or special REST clients (there are a lot:
-https://insomnia.rest/, http://www.swensensoftware.com/im-only-resting,
-https://www.getpostman.com/, ...)
+- Extend the pom with the necessary dependencies (h2, spring-boot-starter-data-jpa)
+- Configure the h2 in the application properties (see https://www.baeldung.com/spring-boot-h2-database or solution)
+- Add an sql script for creating the user table and init some users
+- Use @Entity to get our database entity and access the h2 via a jpa repository
+- Map the returned entities to DTO's and return them
 
 ## Bonus Task 1
 
-Add an endpoint to get the data of one user by id. How should
-the id be given? What should happen when no user was found for
-the given id?
+Extend our interface with the possibility to add a new user.
 
-Implement the endpoint and test it like you did in the main task.
+- @PostMapping identifies our controller method for this usecase.
+- @RequestBody identifies the value we expect. In this case a user that is represented as json.
 
-## Bonus Task 2
-
-The list functionality is usually extended by supporting
-- filtering (only a certain list of users is returned)
-- sorting (sort by one of the attributes ascending or descending)
-- pagination (show only 20 users at a time with variable offset)
-
-Design how the client would request these information. Implement
-the server side (start with one feature) and test it.

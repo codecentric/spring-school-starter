@@ -1,0 +1,10 @@
+POST http://localhost:8080/users
+Content-Type: application/json
+
+{
+  "name": "Longbottom",
+  "email": "neville@hogwarts.de",
+  "username": "petetr"
+}
+
+###

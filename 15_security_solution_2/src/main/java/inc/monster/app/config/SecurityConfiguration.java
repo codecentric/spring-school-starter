@@ -14,8 +14,9 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
         http
                 .authorizeRequests(authorize -> authorize
                         .antMatchers("/", "/index", "/login", "/css/**", "/images/**").permitAll()
-                        .anyRequest().denyAll()
+                        .anyRequest().authenticated()
                 )
+//                .csrf().disable().cors().disable()
                 .formLogin(formLogin -> formLogin
                         .loginPage("/login")
                         .successForwardUrl("/car/index")

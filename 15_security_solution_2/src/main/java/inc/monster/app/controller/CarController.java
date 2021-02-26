@@ -1,5 +1,6 @@
 package inc.monster.app.controller;
 
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -7,7 +8,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import javax.annotation.security.RolesAllowed;
 
 @Controller
-@PreAuthorize("hasRole('USER')")
+@Secured({ "ROLE_USER" })
 public class CarController {
 
     @RequestMapping("/car/index")
@@ -15,8 +16,8 @@ public class CarController {
         return "car/index";
     }
 
-    @RolesAllowed({"ADMIN"})
     @RequestMapping("/car/edit")
+    @Secured({ "ROLE_ADMIN" })
     public String carEdit() {
         return "car/edit";
     }
